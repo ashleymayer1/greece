@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greece 2027 — Nichole's 40th</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --navy: #1B2A4A; --aegean: #2E7DB5; --sand: #F7F2E8; --gold: #C09B47; --white: #FAFAFA; --ink: #1C1C1C; --muted: #6B7280; --border: #D9D0C2; --green: #2D6A4F; }
+  body { font-family: 'Inter', sans-serif; background: var(--sand); color: var(--ink); font-size: 14px; line-height: 1.6; }
+  .hero { background: var(--navy); color: var(--white); padding: 56px 48px 48px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 80px; background: linear-gradient(180deg, transparent, rgba(0,0,0,0.25)); }
+  .hero-wave { position: absolute; top: 0; right: 0; width: 340px; height: 100%; opacity: 0.06; background: radial-gradient(ellipse at 80% 50%, var(--aegean) 0%, transparent 70%); }
+  .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; line-height: 1.1; margin-bottom: 8px; }
+  .hero h1 em { font-style: italic; color: #A8CADF; }
+  .hero-sub { font-size: 15px; color: rgba(255,255,255,0.7); margin-top: 10px; max-width: 520px; }
+  .hero-meta { display: flex; gap: 32px; margin-top: 32px; flex-wrap: wrap; }
+  .hero-meta-item { border-left: 2px solid var(--gold); padding-left: 12px; }
+  .hero-meta-item .label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 2px; }
+  .hero-meta-item .value { font-size: 15px; font-weight: 500; }
+  .included-bar { background: var(--aegean); color: var(--white); padding: 16px 48px; display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+  .included-bar .label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.7; white-space: nowrap; }
+  .included-bar .items { display: flex; gap: 24px; flex-wrap: wrap; }
+  .included-bar .item { font-size: 13px; display: flex; align-items: center; gap: 6px; }
+  .included-bar .item::before { content: '✓'; font-weight: 700; font-size: 12px; color: #7DD4A8; }
+  .main { max-width: 960px; margin: 0 auto; padding: 40px 32px; }
+  .section-header { display: flex; align-items: baseline; gap: 14px; margin-bottom: 20px; margin-top: 48px; }
+  .section-header:first-of-type { margin-top: 0; }
+  .section-num { font-family: 'Cormorant Garamond', serif; font-size: 13px; font-weight: 400; color: var(--gold); letter-spacing: 0.08em; flex-shrink: 0; }
+  .section-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; letter-spacing: -0.01em; }
+  .section-desc { font-size: 13px; color: var(--muted); margin-bottom: 24px; line-height: 1.7; max-width: 680px; }
+  .scenario-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 8px; }
+  .scenario-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .scenario-card.recommended { border-color: var(--aegean); border-width: 2px; }
+  .scenario-badge { background: var(--border); color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; text-align: center; }
+  .scenario-card.recommended .scenario-badge { background: var(--aegean); color: var(--white); }
+  .scenario-head { padding: 20px 20px 16px; border-bottom: 1px solid var(--border); }
+  .scenario-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; margin-bottom: 2px; }
+  .scenario-tagline { font-size: 11.5px; color: var(--muted); }
+  .scenario-total { padding: 16px 20px; background: #F4F7FA; border-bottom: 1px solid var(--border); }
+  .scenario-total .price { font-size: 34px; font-family: 'Cormorant Garamond', serif; font-weight: 600; color: var(--navy); line-height: 1; }
+  .scenario-total .price-label { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .scenario-lines { padding: 16px 20px; }
+  .scenario-line { display: flex; justify-content: space-between; align-items: baseline; padding: 5px 0; border-bottom: 1px solid #F0EBE2; font-size: 12.5px; }
+  .scenario-line:last-child { border-bottom: none; }
+  .scenario-line .line-label { color: var(--muted); }
+  .scenario-line .line-val { font-weight: 500; font-variant-numeric: tabular-nums; }
+  .scenario-line.personal .line-label { color: var(--ink); font-style: italic; }
+  .scenario-line.total-row .line-label { font-weight: 700; color: var(--navy); }
+  .scenario-line.total-row .line-val { font-weight: 700; color: var(--navy); font-size: 15px; }
+  .scenario-note { padding: 10px 20px 16px; font-size: 11px; color: var(--muted); font-style: italic; }
+  .charter-table-wrap { overflow-x: auto; margin-bottom: 8px; }
+  table.charter-table { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--white); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  table.charter-table th { background: var(--navy); color: var(--white); font-weight: 600; padding: 12px 16px; text-align: left; font-size: 11.5px; letter-spacing: 0.04em; }
+  table.charter-table th:not(:first-child) { text-align: right; }
+  table.charter-table td { padding: 10px 16px; border-bottom: 1px solid #F0EBE2; vertical-align: middle; }
+  table.charter-table td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+  table.charter-table tr:last-child td { border-bottom: none; }
+  table.charter-table .subtotal-row td { background: #F4F7FA; font-weight: 700; border-top: 2px solid var(--border); color: var(--navy); }
+  table.charter-table .apa-note { font-size: 11px; color: var(--muted); display: block; font-style: italic; margin-top: 2px; }
+  .timeline { position: relative; padding-left: 24px; }
+  .timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(to bottom, var(--aegean), var(--gold)); }
+  .timeline-item { position: relative; margin-bottom: 28px; background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; }
+  .timeline-dot { position: absolute; left: -27px; top: 20px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--white); background: var(--aegean); box-shadow: 0 0 0 2px var(--aegean); }
+  .timeline-item.final .timeline-dot { background: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
+  .timeline-when { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--aegean); margin-bottom: 3px; }
+  .timeline-item.final .timeline-when { color: var(--gold); }
+  .timeline-title { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+  .timeline-desc { font-size: 12.5px; color: var(--muted); margin-bottom: 10px; line-height: 1.6; }
+  .timeline-amounts { display: flex; gap: 16px; flex-wrap: wrap; padding-top: 10px; border-top: 1px solid #F0EBE2; }
+  .tl-amount { flex: 1; min-width: 140px; background: #F4F7FA; border-radius: 6px; padding: 8px 12px; }
+  .tl-amount .scenario { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .tl-amount .amt { font-size: 17px; font-weight: 700; color: var(--navy); font-variant-numeric: tabular-nums; }
+  .tl-amount .amt-sub { font-size: 10.5px; color: var(--muted); }
+  .tl-amount.running .amt { color: var(--green); }
+  .tl-amount.running .scenario { color: var(--green); }
+  .callout { border-radius: 8px; padding: 14px 18px; margin: 12px 0; font-size: 12.5px; line-height: 1.65; display: flex; gap: 12px; align-items: flex-start; }
+  .callout.warn { background: #FEF3C7; border-left: 3px solid #F59E0B; }
+  .callout.tip { background: #ECFDF5; border-left: 3px solid #10B981; }
+  .callout-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .callout-text strong { display: block; font-weight: 600; margin-bottom: 3px; font-size: 13px; }
+  .expect-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .expect-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; }
+  .expect-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+  .expect-card ul { list-style: none; padding: 0; }
+  .expect-card ul li { font-size: 12.5px; color: var(--muted); padding: 3px 0; padding-left: 14px; position: relative; }
+  .expect-card ul li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 11px; }
+  .notes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .note-item { background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; font-size: 12px; color: var(--muted); }
+  .note-item strong { display: block; color: var(--ink); font-size: 12.5px; margin-bottom: 3px; }
+  .footer { margin-top: 56px; padding: 24px 32px; background: var(--navy); color: rgba(255,255,255,0.5); font-size: 11px; text-align: center; line-height: 1.7; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 40px 0 0; }
+  @media (max-width: 700px) {
+    .hero { padding: 36px 24px 32px; } .hero h1 { font-size: 36px; } .included-bar { padding: 14px 24px; }
+    .main { padding: 28px 18px; } .scenario-grid, .expect-grid, .notes-grid { grid-template-columns: 1fr; }
+    .timeline-amounts { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="hero-wave"></div>
+  <div class="hero-eyebrow">Nichole's 40th Birthday Trip</div>
+  <h1>Greece, <em>the private way</em></h1>
+  <p class="hero-sub">A 9-day trip for 6 — two nights exploring Athens, then five nights sailing the Greek islands on a fully crewed private catamaran.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><div class="label">Dates</div><div class="value">May 12–20, 2027</div></div>
+    <div class="hero-meta-item"><div class="label">Group</div><div class="value">6 people</div></div>
+    <div class="hero-meta-item"><div class="label">Flying from</div><div class="value">RDU → ATH</div></div>
+    <div class="hero-meta-item"><div class="label">Charter</div><div class="value">May 15–20 (5 nights)</div></div>
+  </div>
+</div>
+<div class="included-bar">
+  <div class="label">Charter includes</div>
+  <div class="items">
+    <span class="item">Private Lagoon catamaran (5 cabins)</span>
+    <span class="item">Skipper + crew</span>
+    <span class="item">Onboard cook/hostess</span>
+    <span class="item">Fuel, marina fees &amp; provisioning</span>
+    <span class="item">Water toys (snorkel, SUP, tube, scooter)</span>
+    <span class="item">WiFi onboard</span>
+  </div>
+</div>
+<div class="main">
+  <div class="section-header"><span class="section-num">01</span><h2>Cost Scenarios — Choose Your Level</h2></div>
+  <p class="section-desc">Three options below. All include the onboard cook. "Personal spending" is a suggested budget for souvenirs, port shopping, and extras — it's your own money to spend as you like, but it's included so there are no surprises. Charter costs converted from euros at an estimated €1 = $1.10; actual cost will vary with exchange rates.</p>
+  <div class="scenario-grid">
+    <div class="scenario-card recommended">
+      <div class="scenario-badge">⭐ Recommended</div>
+      <div class="scenario-head"><div class="scenario-name">Option A</div><div class="scenario-tagline">Lagoon 51 · Delta Comfort+</div></div>
+      <div class="scenario-total"><div class="price">$6,540</div><div class="price-label">estimated per person, all-in</div></div>
+      <div class="scenario-lines">
+        <div class="scenario-line"><span class="line-label">Charter share (Lagoon 51 w/ cook)</span><span class="line-val">$3,190</span></div>
+        <div class="scenario-line"><span class="line-label">Flights (Comfort+, RDU–ATH r/t)</span><span class="line-val">$1,700</span></div>
+        <div class="scenario-line"><span class="line-label">Athens hotel, 2 nights (shared room)</span><span class="line-val">$200</span></div>
+        <div class="scenario-line"><span class="line-label">Ground transport, 3 transfers (shared)</span><span class="line-val">$75</span></div>
+        <div class="scenario-line"><span class="line-label">Travel insurance</span><span class="line-val">$200</span></div>
+        <div class="scenario-line"><span class="line-label">Athens food &amp; activities (1.5 days)</span><span class="line-val">$275</span></div>
+        <div class="scenario-line"><span class="line-label">Port dinners &amp; onboard extras (5 nights)</span><span class="line-val">$400</span></div>
+        <div class="scenario-line"><span class="line-label">Crew gratuity (~10%, cash at departure)</span><span class="line-val">$200</span></div>
+        <div class="scenario-line personal"><span class="line-label">Personal spending (souvenirs, shopping)</span><span class="line-val">$300</span></div>
+        <div class="scenario-line total-row"><span class="line-label">Estimated Total</span><span class="line-val">$6,540</span></div>
+      </div>
+      <div class="scenario-note">Best overall experience. Larger flybridge on the Lagoon 51 makes a real difference for group hangouts. Comfort+ matters on the 10-hr overnight JFK–ATH leg.</div>
+    </div>
+    <div class="scenario-card">
+      <div class="scenario-badge">Mid Option</div>
+      <div class="scenario-head"><div class="scenario-name">Option B</div><div class="scenario-tagline">Lagoon 51 · Economy</div></div>
+      <div class="scenario-total"><div class="price">$6,140</div><div class="price-label">estimated per person, all-in</div></div>
+      <div class="scenario-lines">
+        <div class="scenario-line"><span class="line-label">Charter share (Lagoon 51 w/ cook)</span><span class="line-val">$3,190</span></div>
+        <div class="scenario-line"><span class="line-label">Flights (Economy, RDU–ATH r/t)</span><span class="line-val">$1,300</span></div>
+        <div class="scenario-line"><span class="line-label">Athens hotel, 2 nights (shared room)</span><span class="line-val">$200</span></div>
+        <div class="scenario-line"><span class="line-label">Ground transport, 3 transfers (shared)</span><span class="line-val">$75</span></div>
+        <div class="scenario-line"><span class="line-label">Travel insurance</span><span class="line-val">$200</span></div>
+        <div class="scenario-line"><span class="line-label">Athens food &amp; activities (1.5 days)</span><span class="line-val">$275</span></div>
+        <div class="scenario-line"><span class="line-label">Port dinners &amp; onboard extras (5 nights)</span><span class="line-val">$400</span></div>
+        <div class="scenario-line"><span class="line-label">Crew gratuity (~10%, cash at departure)</span><span class="line-val">$200</span></div>
+        <div class="scenario-line personal"><span class="line-label">Personal spending (souvenirs, shopping)</span><span class="line-val">$300</span></div>
+        <div class="scenario-line total-row"><span class="line-label">Estimated Total</span><span class="line-val">$6,140</span></div>
+      </div>
+      <div class="scenario-note">Same great boat. Saves $400/pp vs. Comfort+ on the overnight flight — the main tradeoff is the transatlantic leg in economy.</div>
+    </div>
+    <div class="scenario-card">
+      <div class="scenario-badge">Budget Option</div>
+      <div class="scenario-head"><div class="scenario-name">Option C</div><div class="scenario-tagline">Lagoon 50 · Economy</div></div>
+      <div class="scenario-total"><div class="price">$5,671</div><div class="price-label">estimated per person, all-in</div></div>
+      <div class="scenario-lines">
+        <div class="scenario-line"><span class="line-label">Charter share (Lagoon 50 w/ cook)</span><span class="line-val">$2,751</span></div>
+        <div class="scenario-line"><span class="line-label">Flights (Economy, RDU–ATH r/t)</span><span class="line-val">$1,300</span></div>
+        <div class="scenario-line"><span class="line-label">Athens hotel, 2 nights (shared room)</span><span class="line-val">$200</span></div>
+        <div class="scenario-line"><span class="line-label">Ground transport, 3 transfers (shared)</span><span class="line-val">$75</span></div>
+        <div class="scenario-line"><span class="line-label">Travel insurance</span><span class="line-val">$200</span></div>
+        <div class="scenario-line"><span class="line-label">Athens food &amp; activities (1.5 days)</span><span class="line-val">$275</span></div>
+        <div class="scenario-line"><span class="line-label">Port dinners &amp; onboard extras (5 nights)</span><span class="line-val">$400</span></div>
+        <div class="scenario-line"><span class="line-label">Crew gratuity (~10%, cash at departure)</span><span class="line-val">$170</span></div>
+        <div class="scenario-line personal"><span class="line-label">Personal spending (souvenirs, shopping)</span><span class="line-val">$300</span></div>
+        <div class="scenario-line total-row"><span class="line-label">Estimated Total</span><span class="line-val">$5,671</span></div>
+      </div>
+      <div class="scenario-note">Closest to the original $4–5k target. Still a fully crewed catamaran with cook — an incredible experience at a lower price point.</div>
+    </div>
+  </div>
+  <div class="callout warn">
+    <div class="callout-icon">⚠️</div>
+    <div class="callout-text"><strong>Budget reality check</strong> The original $4–5k per person target doesn't hold at this experience level once all costs are included. Expect $5,700–6,500 depending on scenario. The "personal spending" line ($300) is a suggested baseline — spenders who shop more will exceed it. The APA may partially refund if not fully spent, which provides a small cushion on the charter side.</div>
+  </div>
+  <hr class="divider">
+  <div class="section-header"><span class="section-num">02</span><h2>Charter Cost Breakdown</h2></div>
+  <p class="section-desc">The charter is a group expense split 6 ways. The APA (Advance Provisioning Allowance) is a prepaid fund the captain draws from for fuel, marina fees, and provisions. Any unspent amount is refunded in cash at the end of the trip — it can run over if the group spends more than estimated.</p>
+  <div class="charter-table-wrap">
+    <table class="charter-table">
+      <thead><tr><th>Line Item</th><th>Lagoon 50 (EUR)</th><th>Lagoon 50 (USD~)</th><th>Lagoon 51 (EUR)</th><th>Lagoon 51 (USD~)</th></tr></thead>
+      <tbody>
+        <tr><td>Charter hire (bare boat)</td><td>€9,290</td><td>$10,219</td><td>€11,070</td><td>$12,177</td></tr>
+        <tr><td>VAT 12%</td><td>€1,115</td><td>$1,227</td><td>€1,328</td><td>$1,461</td></tr>
+        <tr><td>APA — provisions, fuel, marina fees<span class="apa-note">Prepaid fund; unspent portion refunded in cash at disembarkation</span></td><td>€2,300</td><td>$2,530</td><td>€2,700</td><td>$2,970</td></tr>
+        <tr><td>Skipper fee</td><td>€1,250</td><td>$1,375</td><td>€1,250</td><td>$1,375</td></tr>
+        <tr><td>Hostess/cook fee</td><td>€1,050</td><td>$1,155</td><td>€1,050</td><td>$1,155</td></tr>
+        <tr class="subtotal-row"><td>Group Total</td><td>€15,005</td><td>$16,506</td><td>€17,398</td><td>$19,138</td></tr>
+        <tr class="subtotal-row"><td>Per Person (÷ 6)</td><td>€2,501</td><td>$2,751</td><td>€2,900</td><td>$3,190</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:11.5px; color:var(--muted); margin-top:8px; font-style:italic;">USD estimates use €1 = $1.10. Charter is quoted in euros — actual USD cost will move with the exchange rate between booking and payment dates.</p>
+  <div class="callout tip" style="margin-top:16px;">
+    <div class="callout-icon">💡</div>
+    <div class="callout-text"><strong>Crew gratuity is separate and expected</strong> Standard practice on crewed charters is 10–15% of the base charter hire, paid in cash at the end of the trip. Budget ~$170–200/person. This is not included in any of the charter company's quoted prices above.</div>
+  </div>
+  <hr class="divider">
+  <div class="section-header"><span class="section-num">03</span><h2>Payment Timeline</h2></div>
+  <p class="section-desc">Running totals shown for Option A (Lagoon 51 + Comfort+) and Option C (Lagoon 50 + Economy) to show the range. Interim amounts represent cumulative spend through each checkpoint.</p>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-when">July 2026 — As Soon As Possible</div>
+      <div class="timeline-title">⛵ Book the Charter + Pay Deposit</div>
+      <div class="timeline-desc">The charter requires a 50% deposit on the base charter hire to hold the dates. Popular Lagoon boats in May fill up — aim to book this summer. Payment is wired directly to the charter company in euros. The skipper/cook/VAT/APA are all in the second payment.</div>
+      <div class="timeline-amounts">
+        <div class="tl-amount"><div class="scenario">Deposit — Option A/B (Lagoon 51)</div><div class="amt">$1,015<span style="font-size:13px;font-weight:400;">/pp</span></div><div class="amt-sub">50% of €11,070 ÷ 6, at ~$1.10</div></div>
+        <div class="tl-amount"><div class="scenario">Deposit — Option C (Lagoon 50)</div><div class="amt">$852<span style="font-size:13px;font-weight:400;">/pp</span></div><div class="amt-sub">50% of €9,290 ÷ 6, at ~$1.10</div></div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-when">July 2026 — Within 14 Days of Charter Deposit</div>
+      <div class="timeline-title">🛡️ Purchase Travel Insurance</div>
+      <div class="timeline-desc">Strongly recommended. "Cancel for Any Reason" (CFAR) coverage must be purchased within 10–14 days of your first trip deposit — the clock starts the moment the charter deposit is paid. Group policies covering all 6 travelers under one contract are available. Compare options at InsureMyTrip.com. Providers Seasen recommended: Faye and Arch RoamRight.</div>
+      <div class="timeline-amounts">
+        <div class="tl-amount"><div class="scenario">Per Person (all scenarios)</div><div class="amt">~$200</div><div class="amt-sub">Varies by plan and coverage level</div></div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-when">July 2026 — Same Window</div>
+      <div class="timeline-title">✈️ Book Flights</div>
+      <div class="timeline-desc">Delta typically opens international booking windows about 11 months in advance — May 2027 flights should open June–July 2026. Book as soon as schedules are released. Current pricing for RDU–ATH round trip: ~$1,300 economy, ~$1,700 Comfort+. Both route through a hub (likely JFK or ATL) with an overnight transatlantic leg.</div>
+      <div class="timeline-amounts">
+        <div class="tl-amount"><div class="scenario">Economy — Options B &amp; C</div><div class="amt">$1,300<span style="font-size:13px;font-weight:400;">/pp</span></div></div>
+        <div class="tl-amount"><div class="scenario">Comfort+ — Option A</div><div class="amt">$1,700<span style="font-size:13px;font-weight:400;">/pp</span></div></div>
+        <div class="tl-amount running"><div class="scenario">Running total — Option A</div><div class="amt">~$2,915</div><div class="amt-sub">Charter dep. + insurance + flights</div></div>
+        <div class="tl-amount running"><div class="scenario">Running total — Option C</div><div class="amt">~$2,352</div><div class="amt-sub">Charter dep. + insurance + flights</div></div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-when">Fall 2026 (October–November)</div>
+      <div class="timeline-title">🏛️ Book Athens Hotel</div>
+      <div class="timeline-desc">2 nights pre-charter: check in May 13, check out May 15 morning. Targeting a Marriott-brand property in central Athens — two group members have Marriott status, which may unlock upgrades or breakfast. Budget below assumes 3 rooms at $200/room/night at rack rate; status or points could reduce this.</div>
+      <div class="timeline-amounts">
+        <div class="tl-amount"><div class="scenario">Per Person (all scenarios)</div><div class="amt">~$200</div><div class="amt-sub">3 rooms × $200/night × 2 nights ÷ 6</div></div>
+        <div class="tl-amount running"><div class="scenario">Running total — Option A</div><div class="amt">~$3,115</div></div>
+        <div class="tl-amount running"><div class="scenario">Running total — Option C</div><div class="amt">~$2,552</div></div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-when">~April 1–15, 2027 (30–45 Days Before Sailing)</div>
+      <div class="timeline-title">⚓ Charter Balance Due — The Big One</div>
+      <div class="timeline-desc">The second and final charter payment covers the remaining 50% of charter hire, plus VAT, the full APA, skipper fee, and cook fee. Wired to the charter company in euros. Your bank may charge a wire fee ($20–50) — plan for that.</div>
+      <div class="timeline-amounts">
+        <div class="tl-amount"><div class="scenario">Balance — Option A/B (Lagoon 51)</div><div class="amt">$2,175<span style="font-size:13px;font-weight:400;">/pp</span></div><div class="amt-sub">50% hire + VAT + APA + skipper + cook ÷ 6</div></div>
+        <div class="tl-amount"><div class="scenario">Balance — Option C (Lagoon 50)</div><div class="amt">$1,899<span style="font-size:13px;font-weight:400;">/pp</span></div><div class="amt-sub">50% hire + VAT + APA + skipper + cook ÷ 6</div></div>
+        <div class="tl-amount running"><div class="scenario">Running total — Option A</div><div class="amt">~$5,290</div></div>
+        <div class="tl-amount running"><div class="scenario">Running total — Option C</div><div class="amt">~$4,451</div></div>
+      </div>
+    </div>
+    <div class="timeline-item final">
+      <div class="timeline-dot"></div>
+      <div class="timeline-when">May 12–20, 2027</div>
+      <div class="timeline-title">🌊 The Trip — On-the-Ground Expenses</div>
+      <div class="timeline-desc">Day-of expenses paid in cash or card. Ground transfers are pre-booked private minivan rides: airport → hotel → marina (May 13 &amp; 15), then marina → airport (May 20 morning). Athens covers arrival dinner plus a full sightseeing day. Port dining covers 5 dinners ashore plus evening drinks. Crew tip is paid in cash at disembarkation on May 20.</div>
+      <div class="timeline-amounts">
+        <div class="tl-amount"><div class="scenario">Ground transport (3 shared transfers)</div><div class="amt">~$75<span style="font-size:13px;font-weight:400;">/pp</span></div><div class="amt-sub">Pre-book private minivan for all 3 legs</div></div>
+        <div class="tl-amount"><div class="scenario">Athens food + Acropolis (1.5 days)</div><div class="amt">~$275<span style="font-size:13px;font-weight:400;">/pp</span></div><div class="amt-sub">Arrival dinner + full day meals, entry fees, drinks</div></div>
+        <div class="tl-amount"><div class="scenario">Port dinners + onboard extras (5 nights)</div><div class="amt">~$400<span style="font-size:13px;font-weight:400;">/pp</span></div><div class="amt-sub">5 dinners ashore + evening drinks + extras</div></div>
+        <div class="tl-amount"><div class="scenario">Crew gratuity (cash, end of charter)</div><div class="amt">~$200<span style="font-size:13px;font-weight:400;">/pp</span></div><div class="amt-sub">~10% of charter hire, split 6 ways</div></div>
+        <div class="tl-amount"><div class="scenario">Personal spending</div><div class="amt">~$300<span style="font-size:13px;font-weight:400;">/pp</span></div><div class="amt-sub">Souvenirs, port shopping, extras — yours to spend</div></div>
+        <div class="tl-amount running"><div class="scenario">FINAL TOTAL — Option A</div><div class="amt">~$6,540</div><div class="amt-sub">Lagoon 51 + Comfort+</div></div>
+        <div class="tl-amount running"><div class="scenario">FINAL TOTAL — Option C</div><div class="amt">~$5,671</div><div class="amt-sub">Lagoon 50 + Economy</div></div>
+      </div>
+    </div>
+  </div>
+  <hr class="divider">
+  <div class="section-header"><span class="section-num">04</span><h2>What You're Getting</h2></div>
+  <div class="expect-grid">
+    <div class="expect-card">
+      <h4>⛵ The Charter</h4>
+      <ul>
+        <li>Private Lagoon catamaran — 5 cabins, 4 bathrooms, just the 6 of us</li>
+        <li>Professional skipper navigates and handles all sailing</li>
+        <li>Onboard cook prepares breakfast and lunch daily; group eats dinner ashore each evening</li>
+        <li>Island-hopping in the Aegean: Argosaronic islands (Hydra, Poros, Spetses, Aegina) or Cyclades depending on conditions</li>
+        <li>Route finalized by captain ~1 week before based on weather — we can share island preferences ahead of time</li>
+        <li>Water toys: snorkel gear, stand-up paddleboard, underwater scooter, large tube, motorized tender</li>
+      </ul>
+    </div>
+    <div class="expect-card">
+      <h4>🏛️ Athens Pre-Trip</h4>
+      <ul>
+        <li>Arrive May 13 — full recovery day after overnight flight, check in, settle in</li>
+        <li>Full day May 14: Acropolis &amp; Parthenon, Acropolis Museum, Plaka neighborhood, lunch and dinner</li>
+        <li>Board the catamaran May 15 at 5pm from Nea Peramos marina (~45 min from central Athens)</li>
+        <li>Hotel: targeting a Marriott-brand property in central Athens, 2 per room</li>
+      </ul>
+    </div>
+    <div class="expect-card">
+      <h4>✈️ The Flights</h4>
+      <ul>
+        <li>RDU → ATH with one connection (likely JFK or ATL on Delta)</li>
+        <li>Depart evening May 12, arrive Athens morning May 13 after an overnight transatlantic leg</li>
+        <li>Return evening May 20 from ATH, arrive RDU late night</li>
+        <li>No visa required for US citizens — EU biometric entry (EES) required at border on first entry</li>
+        <li>Passports must be valid through at least November 2027</li>
+      </ul>
+    </div>
+    <div class="expect-card">
+      <h4>💰 What the APA Covers vs. What It Doesn't</h4>
+      <ul>
+        <li>Covers: fuel for the charter route, all marina and port fees, onboard food and drinks</li>
+        <li>Crew food is included separately — not from the APA</li>
+        <li>Does not cover: dinners in port town restaurants, extra alcohol, paid shore excursions</li>
+        <li>Unspent APA is refunded in cash at disembarkation</li>
+        <li>If the group spends over the APA estimate, the difference is settled with the captain before leaving</li>
+      </ul>
+    </div>
+  </div>
+  <hr class="divider">
+  <div class="section-header"><span class="section-num">05</span><h2>Don't Forget These</h2></div>
+  <div class="notes-grid">
+    <div class="note-item"><strong>💳 Cash &amp; Currency</strong> Greece uses euros. Bring cash for the boat — the APA refund is in cash, crew tip is cash. ATMs are widely available in Athens and port towns. Notify your bank before you travel.</div>
+    <div class="note-item"><strong>🔌 Power Adapters</strong> Greece uses Type C/F outlets (two round pins, 230V). US devices need a plug adapter. Most modern chargers handle 110-240V, but check hair tools and high-wattage items.</div>
+    <div class="note-item"><strong>📱 International Phone Plan</strong> Add a plan before you fly. WiFi is on the boat, but you'll want data in Athens and in port. Most US carriers offer international day passes or monthly add-ons.</div>
+    <div class="note-item"><strong>🛂 Passports</strong> Must be valid through at least November 20, 2027. Renew now if needed — processing has had long backlogs.</div>
+    <div class="note-item"><strong>🧳 Pack for a Boat</strong> Cabin space is limited. Soft-sided bags (duffels), not hard-shell suitcases. Layers for evenings, swimwear, reef-safe sunscreen.</div>
+    <div class="note-item"><strong>🌊 Sea Sickness</strong> The Aegean in mid-May is generally calm and catamarans are stable — but bring Dramamine if you're prone to motion sickness.</div>
+    <div class="note-item"><strong>💡 Insurance Timing</strong> CFAR coverage must be purchased within 10–14 days of your first deposit. Group policies covering all 6 travelers are available — compare at InsureMyTrip.com.</div>
+    <div class="note-item"><strong>📋 Still TBD from Seasen</strong> Official contract + cancellation terms (on formal offer), confirmed specific vessel, and whether payment routes through Seasen or directly to the charter company.</div>
+  </div>
+</div>
+<div class="footer">
+  Cost estimates prepared June 2026 · Charter quotes from Arrow Travel Co. (Seasen Acevedo-Zullo) via charter partner<br>
+  All USD figures estimated at €1 = $1.10 · Actual costs will vary with exchange rates and final charter terms<br>
+  Questions? Contact Ashley — she's coordinating everything.
+</div>
+</body>
+</html>
